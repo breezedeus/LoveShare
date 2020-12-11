@@ -1,0 +1,688 @@
+\documentclass[12pt]{article}
+%\begin{document}
+\usepackage{CJK}
+%\usepackage{amsmath}
+\usepackage{fancybox}
+\usepackage[dvips]{graphicx}
+\usepackage{color}
+\usepackage{bbding}
+\usepackage{bm}
+\usepackage{amsmath,amssymb,amsfonts}
+
+%\usepackage{showkeys}
+%\usepackage[notref]{showkeys}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\textwidth}{164mm} \setlength{\textheight}{23.0cm}
+\setlength{\headheight}{0cm} \setlength{\topmargin}{-0.1cm}
+\setlength{\oddsidemargin}{0cm} \setlength{\evensidemargin}{0cm}
+\setlength{\parskip}{1mm} \setlength{\unitlength}{1mm}
+\def\baselinestretch{1.1}
+
+\definecolor{heavy-red}{rgb}{0.4,0.1,0.3}
+\definecolor{light-red}{rgb}{0.8,0.1,0.3}
+\definecolor{light-blue}{rgb}{0.4,0.45,1}
+\definecolor{heavy-blue}{rgb}{0.1,0.15,0.4}
+%  \newenvironment{ovalminipage}{\begin{Sbox}\begin{minipage}}%
+%                 {\end{minipage}\end{Sbox}\ovalbox{\TheSbox}}
+\newcommand{\ind}[1][18pt]{\hspace*{#1}}
+\newcommand{\invind}[1][-18pt]{\hspace*{#1}}
+
+\newcommand{\Shadow}[2][light-red]{\setlength{\fboxsep}{3.5pt}\setlength{\shadowsize}{3pt}{\color{#1}%
+     \shadowbox{{\color{heavy-blue}\textsf{#2}}}}}
+
+\newcommand{\Oval}[2][light-red]{\setlength{\fboxsep}{1.5pt}{\color{#1}%
+     \ovalbox{{\color{heavy-blue}\textsf{#2}}}}}
+
+\newcommand{\Head}[1]{\setlength{\fboxrule}{0.5pt}\setlength{\fboxsep}{2.5pt}%
+    \colorbox{light-blue}{\textcolor{white}{\bfseries #1}}\\}
+
+\newcommand{\Parbox}[2][light-red]{\ind \parbox[l]{\textwidth}{\color{#1}\textsf{#2}}}
+
+\newcommand{\Color}[2][light-blue]{{\color{#1}\textbf{\textsf{#2}}}}
+
+\newcommand{\Example}[2][Example]{\setlength{\fboxrule}{0.5pt}\setlength{\fboxsep}{2.5pt}%
+    \colorbox{light-blue}{\textcolor{white}{\bfseries #1 :}} \vspace{2.5pt}\\%
+    \ind \setlength{\fboxsep}{3.5pt}\setlength{\shadowsize}{3pt}{\color{light-red}%
+     \shadowbox{{\color{heavy-blue}\textsf{#2}}}}\\}
+
+%\newenvironment{Example}[1][black]{\example \qquad \shadowbox \color{#1}}%
+%{}
+
+\begin{document}
+\begin{CJK*}{GBK}{song}
+
+\input defs.tex % definations
+% just for this paper
+\def\Hz{\s{H_0}} % null hypothesis
+\def\Ho{\s{H_1}}
+\def\sbD{\s{\bD}}
+\def\ttheta{\tilde{\theta}}
+\def\sttheta{\s{\ttheta}}
+\def\htheta{\hat{\theta}}
+\def\shtheta{\s{\htheta}}
+\def\BF{贝叶斯因子}
+
+%\includeonly{chapter1}
+%\includeonly{chapter4_stl}
+
+\newcommand{\Title}[2][heavy-red]{\setlength{\fboxsep}{4.5pt}\setlength{\fboxrule}{2pt}%
+    \setlength{\shadowsize}{4pt}{\color{#1}%
+     \shadowbox{{\color{heavy-blue}\textsf{#2}}}}}
+\title{学习笔记：贝叶斯因子（Bayes Factors）\ucite{Kass}}
+\author{吴金龙（Jinlong Wu）\\\small School of Mathematical Sciences\\\small Peking University}
+\date{March, 2010}
+\maketitle
+%\frontmatter
+\tableofcontents
+
+%\mainmatter
+
+\section{Introduction}
+贝叶斯方法由~Jeffreys (1935, 1961)~引入到\deffont{假设检验（hypothesis testing）}中。
+
+Hypothesis testing~与~model selection~的联系与区别：
+\begin{itemize}
+\item Hypothesis testing~一般用来验证是否该拒绝\deffont{零假设（null hypothesis）}\Hz，
+所以其中的假设\Hz和\Ho是不对称的，
+而~Bayes Factors~中的各个模型之间是对称的。
+\end{itemize}
+
+相比于~non-Bayesian methods~，贝叶斯方法可以解决以下困难：
+\begin{itemize}
+\item 当接受零假设时，零假设到底是以多大的优势打败对手。
+\item 可以很简单的包括其他信息。
+\item 非嵌套模型的比较和嵌套模型一样方便。
+\item 计入模型选择中的不确定性。
+\end{itemize}
+
+\section{Applications}
+
+\begin{description}
+\item[Application 1:] Escherichia coli Mutagenesis \\
+		在两种条件下事件发生的概率\s{H_0}：相同？\s{H_1}：不同？
+\item[Application 2:] The Hot Hand \\
+		每次比赛中投中球满足二项分布，
+		那么不同的比赛中投中球的概率（二项分布的一个参数）\s{H_0}：相同？\s{H_1}：不同？
+\item[Application 3:] Ozone Exceedances \\
+		臭氧超标率随着时间是\s{H_0}：不变？\s{H_1}：逐渐变化？\s{H_2}：突然变化？
+\item[Application 4:] Educational Transitions \\
+		社会阶层背景、能力以及学校种类是如何影响一个人的成就的？
+		连接函数是\s{H_1}：log-log~？还是\s{H_2}：logit~？
+		这个应用中主要的问题是模型不确定性。我们可以获得感兴趣量在单个模型条件下
+		的后验分布\eqref{equ:postdelta0}，也可以获得它在组合模型条件下的
+		后验分布\eqref{equ:postdelta}。
+\item[Application 5:] Human Working Memory Failure in Computer-Based Tasks \\
+\end{description}
+
+\section{Bayes Factors}
+
+\subsection{Definition}
+\begin{itemize}
+\item \sbD： 已知的数据
+\item \s{H_k}： 第\sk个模型
+\item odds： $\text{odds} = \text{probability} / (1-\text{probability})$
+\item 嵌套模型：\s{H_0:\ (\psi=\psi_0, \beta)}；\s{H_1:\ (\psi, \beta)}。
+\end{itemize}
+
+假设有两个候选模型\s{H_1}和\s{H_2}，则：
+\begin{equation}
+\frac{p(H_1|\bD)}{p(H_2|\bD)} = \frac{p(\bD|H_1)}{p(\bD|H_2)} \cdot \frac{p(H_1)}{p(H_2)} \mcomma
+\end{equation}
+也即
+\begin{equation}
+\text{posterior odds} = \text{Bayes factor} \times \text{prior odds} \mperiod
+\end{equation}
+定义
+\begin{equation}\label{equ:bf}
+B_{12} \defeq \frac{p(\bD|H_1)}{p(\bD|H_2)}
+\end{equation}
+为\deffont{贝叶斯因子（Bayes factor）}。
+所以
+\begin{equation}
+\text{Bayes factor} = \frac{\text{posterior odds}} {\text{prior odds}} \mperiod
+\end{equation}
+一般情况我们可以取\s{H_1=H_2=1/2}，此时模型的后验概率比由\BF唯一决定。
+\BF中所涉及的似然\s{p(\bD|H_k)}由下面的积分公式获得：
+\begin{equation}%\label{equ:}
+p(\bD|H_k) = \int p(\bD|\theta_k,H_k) \pi(\theta_k|H_k) d\theta_k \mcomma
+\end{equation}
+其中\s{\theta_k}为模型\s{H_k}中的参数，\s{\pi(\theta_k|H_k)}为它的先验密度。
+记\s{\theta_k}的维数为\s{d_k}。
+
+先验分布\s{\pi(\theta_k|H_k)}是很有必要的，但它的影响也是两方面的。
+一方面它可以包括模型参数的其他信息，另一方面是它在没有很多信息时
+又往往很难决定取何种形式。
+
+\subsection{Interpretation}
+
+Jeffreys (1961)~给了一个\BF的粗略尺度，见表~\ref{tab:jeffreys}。
+\begin{table}[h]
+\centering
+\small{
+\begin{tabular}{c|c}
+\hline\hline \s{B_{10}} & Evidence \textbf{AGAINST} $H_0$ \\ \hline
+	\s{(1,3.2]} & Not worth more than a bare mention \\ \hline
+	\s{(3.2,10]} & Substantial \\ \hline
+	\s{(10,100]} & Strong \\ \hline
+	\s{(100,\infty)} & Decisive \\ 
+\hline\hline
+\end{tabular}}
+\caption{\small Jeffreys' scale of evidence for Bayes factors}\label{tab:jeffreys}
+\end{table}
+
+我们可以把数据在模型\s{H_k}下的对数边缘概率\s{\log p(\bD|H_k)}
+看成模型\s{H_k}获得的\deffont{预测分数（predictive score）}。
+那么\s{\log B_{10}}就是模型\s{H_1}与\s{H_0}的预测分数之差。
+所以\BF\s{B_{10}}可以视为测量模型\s{H_1}与\s{H_0}在预测数据\s{\bD}时的相对成功。
+很多应用中对数\BF也被称为~\deffont{weight of evidence}。
+
+\section{Calculating Bayes Factors}
+
+为了计算贝叶斯因子，我们需要计算如下的积分：
+\begin{equation}\label{equ:I}
+I = \int p(\bD|\theta,H) \pi(\theta|H) d\theta \mperiod
+\end{equation}
+当样本数比较大时，被积函数变得非常集中在它的最大值附近（highly peaked around its maximum）。
+
+\subsection{Asymptotic Approximation}
+
+\subsubsection{Laplace's Method}
+
+当后验密度\s{p(\theta|\bD,H) \propto p(\bD|\theta,H)\pi(\theta|H)}非常集中于
+它的最大值（也即~posterior mode）\sttheta附近时，
+我们可以使用~Laplace~方法获得\eqref{equ:I}的很好近似。
+如果似然函数\s{p(\bD|\theta,H)}非常集中于它的最大值\shtheta附近，
+那么往往\s{p(\theta|\bD,H)}也非常集中于\sttheta附近。
+这种条件在大数据量时可以获得满足。
+
+记
+\begin{equation}\label{equ:l}
+\tilde{l}(\theta) \defeq \log(p(\bD|\theta,H)\pi(\theta|H)) \mcomma
+\end{equation}
+\s{\tilde{l}(\theta)}在\sttheta点处展开至二次项：
+\begin{equation}
+\begin{split}
+\tilde{l}(\theta) &\approx \tilde{l}(\ttheta) + (\theta-\ttheta)^T \frac{d\tilde{l}(\ttheta)}{d\theta}
+	+ \frac12 (\theta-\ttheta)^T D^2\tilde{l}(\ttheta) (\theta-\ttheta) \\
+	&= \tilde{l}(\ttheta) + \frac12 (\theta-\ttheta)^T D^2\tilde{l}(\ttheta) (\theta-\ttheta) \mperiod
+\end{split}
+\end{equation}
+把上面的展开结果代入\eqref{equ:I}，得到\s{I}的近似值：
+\begin{equation}\label{equ:laplaceI}
+\begin{split}
+\hat{I} &= \int \exp\left\{ 
+		\tilde{l}(\ttheta) + \frac12 (\theta-\ttheta)^T D^2\tilde{l}(\ttheta) (\theta-\ttheta) \right\} d\theta \\
+		&= \int \exp\left\{ \frac12 (\theta-\ttheta)^TD^2\tilde{l}(\ttheta)(\theta-\ttheta) \right\} d\theta 
+		\cdot e^{\tilde{l}(\ttheta)} \\
+		&= (2\pi)^{d/2} |\tilde{\Sigma}|^{1/2} \cdot p(\bD|\ttheta,H)\pi(\ttheta|H) \mcomma
+\end{split}
+\end{equation}
+其中\s{\tilde{\Sigma}\defeq (-D^2\tilde{l}(\ttheta))^{-1}}，而\s{d}为\stheta的维数。
+\s{\hat{I}}即为\s{I}的~\deffont{Laplace~近似}。
+在满足某些条件（Kass, Tierney, and Kadane (1990)）时可以得到：
+\begin{equation}
+I = \hat{I} (1+O(n^{-1})) \mshcomma\quad \text{当样本数\s{n \rightarrow \infty}时} \mperiod
+\end{equation}
+
+Laplace~近似对于行为较好（well-behaved，也即似然函数与正态分布相差不是太远）的问题
+一般都可以获得足够好的近似。
+经验也表明当样本数小于\s{5d}时它的近似精度令人担忧，而当样本数大于\s{20d}时
+它一般都可以近似得比较好。
+
+\subsubsection{Variants on Laplace's Method}
+
+\eqref{equ:laplaceI}的一个重要变形如下：
+\begin{equation}\label{equ:variantI}
+\hat{I}_{\text{MLE}} = (2\pi)^{d/2} |\hat{\Sigma}|^{1/2} \cdot p(\bD|\htheta,H)\pi(\htheta|H) \mcomma
+\end{equation}
+其中\s{\hat{\Sigma}}为\deffont{观测信息矩阵（observed information matrix）}，即
+\begin{equation}\label{equ:hatsigma}
+\hat{\Sigma} = -\left. \frac{\partial^2}{\partial\theta^2} l(\theta|\bD,H) \right|_{\htheta}
+	= -\left. \frac{\partial^2}{\partial\theta^2} \log p(\bD|\theta,H) \right|_{\htheta} \msemi
+\end{equation}
+而\shtheta为\deffont{最大似然估计（MLE）}，即\s{p(\bD|\theta,H)}的最大值点。
+\eqref{equ:variantI}的相对误差同样是\s{O(n^{-1})}。
+
+虽然在先验分布包含较多信息时\eqref{equ:variantI}没有\eqref{equ:laplaceI}近似准确，但
+它的计算在很多软件中都更容易得多。
+
+一些软件包中会使用\deffont{期望信息矩阵（expected information matrix，或~Fisher information matrix）}
+\begin{equation*}
+- \left. \mathbb{E} \left[ \left. \frac{\partial^2}{\partial\theta^2} \log p(\bD|\theta,H) \right|\theta \right] 
+\right|_{\htheta} 
+= -n \cdot \left. \mathbb{E} \left[ \left. \frac{\partial^2}{\partial\theta^2} \log p(D_i |\theta,H) 
+	\right|\theta \right] \right|_{\htheta} 
+\end{equation*}
+代替\eqref{equ:variantI}中的观测信息矩阵\s{\hat{\Sigma}}，其中的期望是关于\s{p(\bD|\theta)}的。
+这样产生的近似其渐进相对误差为\s{O(n^{-1/2})}，但在很多问题中它的精度也够用了。
+
+现在假设我们有嵌套模型假设：\s{H_1}有参数\s{(\beta,\psi)}，其对应的先验分布为\s{\pi(\beta,\psi|H_1)}；
+而\s{H_0}有\s{\psi=\psi_0}以及先验分布\s{\pi(\beta|H_0)}。
+使用\eqref{equ:variantI}，我们获得了：
+\begin{equation}\label{equ:logb10}
+2\log B_{10} \approx \Lambda + \log |\hat{\Sigma}_1| - \log |\hat{\Sigma}_0|
++ \log \pi(\hat{\beta},\hat{\psi}|H_1) - \log \pi(\hat{\beta}^*|H_0)
+	+ (d_1 - d_0) \log(2\pi) \mcomma
+\end{equation}
+其中\s{\Lambda\defeq 2[\log p(\bD|(\hat{\beta},\hat{\psi}),H_1)-\log p(\bD|\hat{\beta},H_0) ]}
+为\deffont{对数似然比（log-likelihood ratio）}，
+\s{\hat{\beta}^*}为模型\s{H_0}下的~MLE，而\s{(\hat{\beta},\hat{\psi})}为模型\s{H_1}下的~MLE~。
+依据在计算方差矩阵\s{\hat{\Sigma}_k\ (k=0,1)}时是使用观测信息矩阵还是期望信息矩阵，
+上面的近似误差分别为\s{O(n^{-1})}或\s{O(n^{-1/2})}。
+
+Raftery (1993c)~也建议使用牛顿方法从\shtheta开始走一步获得\sttheta的近似值，
+然后把它代入到\eqref{equ:laplaceI}以获得更精确的\s{2 \log B_{10}}近似值。
+
+\subsubsection{The Schwarz Criterion}
+
+另一种避免在\eqref{equ:bf}中引入先验\s{\pi_k(\theta_k|H_k)}的方法是使用~\deffont{Schwarz criterion}~：
+\begin{equation}\label{equ:schwarz}
+S = \log p(\bD|\htheta_1, H_1) - \log p(\bD|\htheta_2, H_2)
+	- \frac12 (d_1-d_2) \log n \mcomma
+\end{equation}
+其中\s{\htheta_k}为模型\s{H_k}下的~MLE，\s{d_k}为\s{\htheta_k}的维数，
+而\s{n}为样本数。
+
+当\s{n \rightarrow \infty}时，有：
+\begin{equation}%\label{equ:schwarz}
+\frac{S-\log B_{12}} {\log B_{12}} \rightarrow 0 \mperiod
+\end{equation}
+所以\sS往往可以视为\s{\log B_{12}}的近似值。
+通常我们称\s{-2S}为~\deffont{Bayesian information criterion (BIC)}~。
+
+相对于\eqref{equ:laplaceI}和\eqref{equ:variantI}，
+使用\s{e^S}近似\s{B_{12}}的相对误差为\s{O(1)}，
+但在满足某些条件时（比较常见的条件）它的相对误差可以降为\s{O(n^{-1/2})}。
+在大样本情况下，Schwarz criterion~应当能提供~evidence~的合理指示。
+
+Schwarz criterion~的优点是即使先验分布\s{\pi_k(\theta_k|H_k)}很难设定时仍可以使用。
+
+\subsection{Simple Monte Carlo, Importance Sampling, and Gaussian Quadrature}
+
+当不显示写出对模型\s{H}的依赖时，\eqref{equ:I}变为：
+\begin{equation}\label{equ:I2}
+p(\bD) = \int p(\bD|\theta) \pi(\theta) d\theta \mperiod
+\end{equation}
+
+对\eqref{equ:I2}的~\deffont{simple Monte Carlo}~积分估计如下：
+\begin{equation}\label{equ:mc}
+\hat{p}_1(\bD) = \frac1m \sum_{i=1}^m p(\bD|\theta^{(i)}) \mshcomma\quad\text{其中 } 
+\theta^{(i)} \sim \pi(\theta) \mshperiod
+\end{equation}
+
+\s{\hat{p}_1(\bD)}的一个主要困难是如果后验分布相对于先验分布更加集中，
+大多数的\s{p(\bD|\theta^{(i)})}都将有很小的值，\s{\hat{p}_1(\bD)}将由少数的大似然值所控制。
+整个模拟过程不高效，收敛到高斯分布的速度很慢，而且最终的\s{\hat{p}_1(\bD)}方差会很大。
+
+一种改进\eqref{equ:mc}近似的方法是使用~\deffont{importance sampling}~，也即：
+\begin{equation}\label{equ:is}
+\hat{I} = \frac{1}{\sum_{i=1}^m w_i} \sum_{i=1}^m w_i p(\bD|\theta^{(i)}) \mshcomma\quad\text{其中 } 
+\theta^{(i)} \sim \pi^*(\theta)\text{ ，且 } w_i = \frac{\pi(\theta^{(i)})} {\pi^*(\theta^{(i)})} \mshperiod
+\end{equation}
+\s{\pi^*(\theta)}被称为~\deffont{importance sampling function}~。
+
+另一个更加高效的估计方法是基于~\deffont{adaptive Gaussian quadrature}~（见~Genz \& Kass (1993)）。
+
+\subsection{Simulating from the Posterior}
+
+很多方法可以被用来近似地从后验分布\s{p(\theta|\bD)=p(\bD|\theta)\pi(\theta)/p(\bD)}获得抽样，
+常见的如~\deffont{direct simulation}~、~\deffont{rejection sampling}~、
+~\deffont{Markov Chain Monte Carlo (MCMC)}~、\deffont{Metropolis-Hastingg}~、
+\deffont{Gibbs sampling}~和~\deffont{weighted likilihood bootstrap}~（Newton \& Raftery (1994)）等等。
+
+取\eqref{equ:is}中的\s{\pi^*(\theta)=p(\theta|\bD)}，把它代入\eqref{equ:is}，得到：
+\begin{equation}\label{equ:is2}
+\begin{split}
+\hat{p}_2(\bD) &= \frac{1}{\sum_{i=1}^m w_i} \sum_{i=1}^m w_i p(\bD|\theta^{(i)}) \\
+		&= \frac{1}{\sum_{i=1}^m \pi(\theta^{(i)})\frac{p(\bD)}{p(\bD|\theta^{(i)})\pi(\theta^{(i)})}}
+		   \sum_{i=1}^m \pi(\theta^{(i)})\frac{p(\bD)}{p(\bD|\theta^{(i)})\pi(\theta^{(i)})} 
+						p(\bD|\theta^{(i)}) \\
+		&= \left\{ \frac1m \sum_{i=1}^m p(\bD|\theta^{(i)})^{-1} \right\}^{-1} \mcomma
+\end{split}
+\end{equation}
+也即似然值的\deffont{调和平均值（harmonic mean）}。
+而且当\s{m \rightarrow \infty}时，
+\begin{equation}
+\hat{p}_2(\bD) \rightarrow p(\bD) \mshcomma\quad \text{almost surely}\mperiod
+\end{equation}
+但一般这种收敛不满足中心极限定理。
+\s{\hat{p}_2(\bD)}的近似是不稳定的，但它容易计算，且通常能够
+获得足够精确的近似来解释\s{\log B_{10}}。
+
+为了克服\s{\hat{p}_2(\bD)}的不稳定性，Newton \& Raftery (1994)~建议
+取\eqref{equ:is}中的\s{\pi^*(\theta)=\delta\pi(\theta)+(1-\delta)p(\theta|\bD)}。
+把它代入\eqref{equ:is}，得到：
+\begin{equation}\label{equ:is3}
+\begin{split}
+\hat{p}_3(\bD) &= \frac{1}{\sum_{i=1}^m w_i} \sum_{i=1}^m w_i p(\bD|\theta^{(i)}) \\
+		&= \frac{1}{\sum_{i=1}^m \pi(\theta^{(i)})/[\delta\pi(\theta^{(i)})+(1-\delta)p(\theta^{(i)}|\bD)]}
+		   \sum_{i=1}^m \frac{\pi(\theta^{(i)})p(\bD|\theta^{(i)})} 
+						{\delta\pi(\theta^{(i)})+(1-\delta)p(\theta^{(i)}|\bD)} \\
+		&= \frac{1}{\sum_{i=1}^m 1/[\delta+(1-\delta)\frac{p(\bD|\theta^{(i)})}{p(\bD)}]}
+		   \sum_{i=1}^m \frac{p(\bD|\theta^{(i)})} 
+						{\delta+(1-\delta)\frac{p(\bD|\theta^{(i)})}{p(\bD)}} \\
+		&= \frac{\sum_{i=1}^m p(\bD|\theta^{(i)})/[\delta\hat{p}_3(\bD)+(1-\delta)p(\bD|\theta^{(i)})]}
+				{\sum_{i=1}^m 1/[\delta\hat{p}_3(\bD)+(1-\delta)p(\bD|\theta^{(i)})]} \mperiod
+\end{split}
+\end{equation}
+\s{\hat{p}_3(\bD)}具有\s{\hat{p}_2(\bD)}的高效性，但同时避免了它的不稳定性。
+而且可以证明\s{\hat{p}_3(\bD)}满足中心极限定理。
+但\s{\hat{p}_3(\bD)}的麻烦之处是我们必须同时从先验和后验分布中获得模拟。
+
+\s{\hat{p}_3(\bD)}需要先后验分布同时模拟的麻烦可以使用如下方法解决：
+(1)从后验分布中抽取所有的\sm个\stheta值；
+(2)“想象”从先验中另外抽取\s{\delta m/(1-\delta)}个\stheta值，
+并且假设这\s{\delta m/(1-\delta)}中的\s{\theta^{(i)}}对应的\s{p(\bD|\theta^{(i)})}
+都等于\s{p(\bD)}，也即它们对应的\s{\delta p(\bD)+(1-\delta)p(\bD|\theta^{(i)})}
+变为\s{p(\bD)}。
+上面的方法产生了一个\s{\hat{p}_3(\bD)}的近似：
+\begin{equation}\label{equ:is4}
+\hat{p}_4(\bD) = \frac{\delta m/(1-\delta) 
+	 + \sum_{i=1}^m p(\bD|\theta^{(i)})/[\delta\hat{p}_4(\bD)+(1-\delta)p(\bD|\theta^{(i)})]}
+	{\delta m/[(1-\delta)\hat{p}_4(\bD)] 
+	 + \sum_{i=1}^m 1/[\delta\hat{p}_4(\bD)+(1-\delta)p(\bD|\theta^{(i)})]} \mperiod
+\end{equation}
+
+\s{\hat{p}_3(\bD)}和\s{\hat{p}_4(\bD)}的计算可以使用简单的迭代方法获得。
+通常只需要几步迭代我们就可以获得收敛后的结果。
+
+注意到：
+\begin{equation}\label{equ:invd0}
+\begin{split}
+p(\bD)^{-1} &= \int \frac{\pi(\theta)}{p(\bD|\theta)\pi(\theta)} p(\theta|\bD) d\theta \\
+&= \int \frac{1}{p(\bD|\theta)} p(\theta|\bD) d\theta \mcomma
+\end{split}
+\end{equation}
+这也为近似计算\s{\hat{p}_2(\bD)}提供了一个更加直观的解释。
+对于一个任意的概率密度函数\s{f(\theta)}，同样有：
+\begin{equation}\label{equ:invd}
+p(\bD)^{-1} = \int \frac{f(\theta)}{p(\bD|\theta)\pi(\theta)} p(\theta|\bD) d\theta \mcomma
+\end{equation}
+由此我们可以获得\eqref{equ:is2}的一个修正形式（Gelfand \& Dey(1994)）：
+\begin{equation}\label{equ:is5}
+\hat{p}_5(\bD) = \left\{ \frac1m \sum_{i=1}^m 
+\frac{f(\theta^{(i)})}{p(\bD|\theta^{(i)})\pi(\theta^{(i)})} \right\}^{-1} \mperiod
+\end{equation}
+如果\s{f(\cdot)}的尾巴足够瘦小，\s{\hat{p}_5(\bD)}满足中心极限定理。
+当\s{f(\cdot)}大约正比于\s{p(\bD|\theta)}时，\s{\hat{p}_5(\bD)}的高效性最易体现。
+
+\subsection{Comparison of Methods}
+
+\section{The Choice of Priors}
+
+到底该选取什么样的先验分布并没有什么一般的定律，它是依据具体问题而定的。
+
+对于先验分布，首要的问题是如何选取它以便代表已知信息。
+另一个重要的问题是贝叶斯因子对于先验选取的\deffont{敏感性（sensitivity）}。
+
+最简单的处理先验选择的问题是直接忽略它，而使用~Schwarz criterion~等方法计算\BF。
+虽然这种方法在“充分大”样本量时可以获得正确的结论，但关键在于“充分大”
+没有什么界定准则。
+另一方面，不同于贝叶斯点估计（如后验均值），\BF的确倾向于对模型参数的先验分布选取敏感。
+
+\subsection{Prior Information}
+
+正如为数据选择模型分布，选择先验分布时通常也做一些简化。
+这种简化对于嵌套模型假设（\s{H_0: (\psi=\psi_0, \beta);\ H_1: (\psi, \beta)}）尤为突出。
+一种常用的假设是：
+\begin{equation}\label{equ:piass}
+\pi(\beta|H_0) = \int \pi(\beta, \psi|H_1) d\psi \mperiod
+\end{equation}
+如果进一步假设\s{H_1}的先验中\s{\beta}和\s{\psi}相互独立，
+那么由上式可得\s{\pi(\beta|H_0)=\pi(\beta|H_1)}，
+所以我们只要分别为\s{\beta}和\s{\psi}选择一个先验分布即可。
+另一种代替假设\eqref{equ:piass}的常用假设是：
+\begin{equation}\label{equ:piass2}
+\pi(\beta|H_0) = \pi(\beta|\psi=\psi_0, H_1) \mperiod
+\end{equation}
+
+在数据建模中，为先验分布做简化要非常小心，因为它们可能影响结果并且
+这种影响可能不被察觉。
+所以这里检验（testing，用来做假设检验）
+和估计（estimation，用来估计感兴趣量的值或分布）是不相同的。
+估计中通常为先验选择方便的形式，
+因为我们知道如果样本量充分大的话，先验的影响会很小。
+对于检验就不是这样了。
+
+\subsection{Sensitivity Analysis}
+
+既然要估计\BF对先验分布的敏感性，自然首先应该明确模型\s{H_1}和\s{H_2}
+中可能使用的先验种类。
+如果已知的足够信息可以产生由超参数决定的初始先验分布（如\s{\denfont{N}(\nu,\phi^2)}），
+我们可以给予超参数一定的扰动（如\s{\mu\rightarrow \mu\pm\phi}）以便计算扰动下的\BF值。
+
+一个近似计算\eqref{equ:bf}的重要方法是使用\eqref{equ:variantI}。
+此时如果先验分布从\s{\pi(\theta|H_*)}变为\s{\pi^{(\text{NEW})}(\theta|H_*)}，
+则\BF从原来的\s{B_{12}}变为：
+\begin{equation}\label{equ:b12new}
+B_{12}^{(\text{NEW})} \approx B_{12} \cdot 
+\left( \frac{\pi^{(\text{NEW})}(\htheta_1|H_1)}{\pi^{(\text{NEW})}(\htheta_2|H_2)} \right)
+\cdot \left( \frac{\pi(\htheta_2|H_2)}{\pi(\htheta_1|H_1)} \right) \mcomma
+\end{equation}
+其中近似误差为\s{O(n^{-1})}。
+\eqref{equ:b12new}的简单性使得它在可选先验分布较多时很有用。
+
+对于嵌套模型，在一些条件假设下，\BF对参数\sbeta分布的选取依赖很小。
+
+当有很少的先验信息时，使用在似然值较大的区域取值较平的先验分布对\BF的
+冲击较小，所以这种先验在此时比较合适。
+
+先验分布的选取应该使得所选先验在选取模型时不要贡献太多的~evidence~。
+
+\subsection{Bayes Factors with Improper Priors}
+
+所谓的~\deffont{improper priors}~其实就是平（均匀取值）的分布。
+对于嵌套模型，只在\s{H_1}中为参数\spsi使用~improper~先验会使得
+\BF倾向于喜欢零假设\s{H_0}。
+
+\section{Accounting For Model Uncertainty}
+
+实际情况下模型建立时往往包括很多候选的模型，而不止两个。
+例如，在回归中，我们需要决定哪些观测数据是噪音，决定哪些变量将被使用，
+决定对已选变量使用何种变换。每种可能的选择组合都将定义一个不同的模型。
+常用的处理这个问题的策略是使用一系列的显著性检验（significance tests）。
+
+但这种常用做法存在几个问题。
+（1）整体策略的抽样性质往往不同于单独检验的性质，这种做法无法很好地理解整体策略的这种抽样性质。
+（2）正在比较的这些模型往往不相互嵌套。
+（3）当设置显著水平时，power consideration~通常没有被考虑进来，检验的~power~特征往往并不知道。
+（4）任何选择单一模型然后基于它做推断的方法都忽视了模型选择中的不确定性，
+这可能会很大程度地低估感兴趣量的不确定性。
+
+如果我们使用贝叶斯方法计算所有候选模型（这些候选模型是利用\BF选出的）对应的后验概率，
+所有前面的困难都能避免。然后我们可以以简单的方式在做组合推断时计入模型不确定性。
+
+\subsection{Basic Ideas}
+
+假设有\s{K+1}个候选模型：\s{H_0, H_1, \ldots, H_K}。
+\s{H_1, \ldots, H_K}中的每一个轮流与\s{H_0}进行比较，产生\BF
+\s{B_{10},\ldots, B_{K0}}。那么\s{H_k}的后验概率为
+\begin{equation}\label{equ:postmodel}
+p(H_k|\bD) = \frac{\alpha_k B_{k0}} {\sum_{l=0}^K \alpha_l B_{l0}} \mcomma
+\end{equation}
+其中\s{\alpha_k=p(H_k)/p(H_0)}，\s{B_{00}=\alpha_0=1}。
+通常我们可以取所有的\s{\alpha_k=1}，但有时候也可以选取其他值来反映各个模型相对合理性的先验信息。
+
+对于一个在所有模型中都有很好定义的感兴趣的量\s{\Delta}，我们可以计算它在给定模型\s{H_k}
+的条件下的后验密度：
+\begin{equation}\label{equ:postdelta0}
+p(\Delta|\bD,H_k) = \int p(\Delta|\bD,\theta_k,H_k) p(\theta_k|\bD,H_k) d\theta_k \mperiod
+\end{equation}
+\eqref{equ:postdelta0}能够在给定模型\s{H_k}的条件下关于\s{\Delta}做推断，
+但我们可能使用\s{\Delta}的没有条件的后验密度，即：
+\begin{equation}\label{equ:postdelta}
+p(\Delta|\bD) = \sum_{k=0}^K p(\Delta|\bD,H_k) p(H_k|\bD) \mperiod
+\end{equation}
+\eqref{equ:postdelta}计入了模型形式的不确定性。
+它的后验均值和方差为：
+\begin{align}
+\mathbb{E}[\Delta|\bD] &= \sum_{k=0}^K \mathbb{E}[\Delta|\bD, H_k] \cdot p(H_k|\bD) \mcomma \\
+\text{var}[\Delta|\bD] &= \sum_{k=0}^K \left( \text{var}[\Delta|\bD, H_k] + (\mathbb{E}[\Delta|\bD, H_k])^2 \right)
+\cdot p(H_k|\bD) - \mathbb{E}[\Delta|\bD]^2 \mperiod
+\end{align}
+
+如果可能的话，在做决定之前都不应该选择单一模型，
+应该使用组合模型\eqref{equ:postdelta}计入模型的不确定性。
+
+\subsection{Occam's Window}
+
+尽管模型不确定性的重要性以及存在处理它的一般策略，要使上面介绍的方法得到广泛使用，
+至少还有三个主要障碍。第一个是计算\BF的困难性。
+
+第二个困难是\eqref{equ:postdelta}中的求和可能包含非常多的项。
+例如回归中包含\s{n}个实例，\s{J}个候选独立变量。如果考虑所有可能的变量子集（\s{2^J}），
+所有可能的噪音情况（大约\s{{n \choose O_{\text{max}}}}）以及每个变量对应的四种可能转换（\s{4^{J+1}}），
+那么可能的模型数目大约为\s{2^J\times {n \choose O_{\text{max}}} \times 4^{J+1}}，
+其中\s{O_{\text{max}}}为数据集中噪音点的最大可能数目。
+就算在\s{n=40}，\s{J=12}以及\s{O_{\text{max}}=5}时，模型数量也达到了\s{10^{16}}的量级。
+
+第三个困难是需要为每个模型的参数指定先验分布。
+解决这个困难的方法有很多。一个是使用~Schwarz criterion~，
+另一个是为一个或几个“大”模型（模型参数很多）指定先验分布，
+然后其他模型看成它们的嵌套模型，通过约束它们的先验而获得其他模型的先验分布。
+
+本节中介绍一种被称为~\deffont{Occam's window}（Madigan \& Raftery (1994)）的方法，
+它被用来在初始时选择一部分模型以便克服初始模型过多的困难。
+这样\eqref{equ:postdelta}中的平均只在更少得多的模型上进行。
+Madigan \& Raftery (1994)~认为如果一个模型的后验值\s{p(H_k|\bD)}比最可能模型的值小很多，
+它就不将再被考虑。所以，对于不属于集合
+\begin{equation}
+\mathcal{A}' = \left\{ H_k: p(H_k|\bD) \geq \frac1C \max_l\{p(H_l|\bD)\} \right\} \qquad (C\gg 1)
+\end{equation}
+的模型，计算\eqref{equ:postdelta}时将不予与考虑。
+\s{C}的值由数据分析者确定，例如\s{C=20}。
+类似于~Occam's razor~，在计算\eqref{equ:postdelta}时
+他们也排除了那些获得更低后验值的复杂模型，也即排除了以下集合中的模型：
+\begin{equation}
+\mathcal{B} = \left\{ H_k: \exists H_l \in \mathcal{A}', 
+	\ H_l \subset H_k, \ p(H_l|\bD)>p(H_k|\bD) \right\} \mperiod
+\end{equation}
+所以方程\eqref{equ:postdelta}由下式代替：
+\begin{equation}\label{equ:postoccam}
+p(\Delta|\bD) = \frac{\sum_{H_k\in\mathcal{A}} p(\Delta|H_k,\bD) p(\bD|H_k) p(H_k)}
+{\sum_{H_k\in\mathcal{A}} p(\bD|H_k) p(H_k)} \mcomma
+\end{equation}
+其中\s{\mathcal{A}=\mathcal{A}' \setminus \mathcal{B}}。
+
+典型地\eqref{equ:postoccam}中的项数降至\s{25}或更少，而且经常可以降至一两项。
+大多数包括集合\s{\mathcal{A}}的初始类的最终选取结果都相同，
+在这个意义下最终的解可以说独立于初始类的选取。
+
+\subsection{Markov Chain Monte Carlo Model Composition (MC$^3$)}
+
+Madigan \& York (1992)~建议使用~MCMC~方法近似\eqref{equ:postdelta}。
+他们创建一个\deffont{不可约（irreducible）}马尔科夫链\s{\{H(t)\}}（$t=1,2,\ldots$），
+使得它的状态空间为\s{\mathcal{H}=\{H_k\}}，平稳分布为\s{\{p(H_k|\bD)\}}。
+则对于任何函数\s{u(H_k)}，马尔科夫链的平均值
+\begin{equation}
+\hat{U} = \frac1m \sum_{t=1}^m u(H(t))
+\end{equation}
+当\s{m\rightarrow\infty}时都以概率\s{1}收敛到\s{\mathbb{E}[u(H)]}。
+为了计算\eqref{equ:postdelta}，他们选取\s{u(H)=p(\Delta|H,\bD)}。
+
+为了创建前面的马尔科夫链，对于每个模型\s{H}，定义它的\deffont{邻居}\s{\text{nbd}(H)}
+为它自己以及与它只有一个不同参数的模型所组成的集合。
+定义\deffont{转移矩阵}\s{\bR}为：
+\begin{equation}\label{equ:transmat}
+\bR(H \rightarrow H') = \left\{ \begin{aligned} 0 &\mshcomma\quad \text{如果 }H' \not\in \text{nbd}(H) \mshsemi \\
+		\text{const} &\mshcomma\quad \text{如果 }H' \in \text{nbd}(H) \mshperiod \end{aligned} \right.
+\end{equation}
+从\s{\bR}中抽取出\s{H'}，然后以概率
+\begin{equation}
+\min \left\{ 1, \frac{p(H'|\bD)}{p(H|\bD)} \right\}
+\end{equation}
+接受\s{H'}，否则此链还呆在状态\s{H}。
+Madigan \& York (1992)~认为通常取链长约为\s{10,000}就足够了。
+
+\subsection{Model Expansion}
+
+Draper (1995)~建议了模型扩展方法：初始时只选择一个模型，
+然后扩展到一组模型，这组模型包括初始的那个模型作为特例，但是放松了初始模型中的一些结构性假设。
+方程\eqref{equ:postdelta}然后被约束到这组扩展模型上为感兴趣的量做推断。
+
+模型扩展方法对于计入模型中关于特别结构假设的不确定性很有帮助，
+但它并不是被设计来计入模型建立（当很多模型初始时被考虑）中内在的不确定性。
+
+\subsection{Evaluation of Methods}
+
+模型的预测能力可以从预测将来数据的能力上进行判断。
+从某种意义上说平均下来方程\eqref{equ:postdelta}可以担保比其中的任何单个被选模型
+获得更好的预测效果（Madigan \& Raftery (1994)）。
+
+在几个数据集上，
+使用~Occam's window~和~MC$^3$~方法获得的模型平均比其中的任何单个被选模型产生了更好的预测结果。
+单个“好”模型之间的差异比考虑模型不确定性获得的改进还要小。
+相比于~Occam's window~方法，MCMC~方法获得了更好的预测效果，
+但代价是它需要更大的计算量，并且产生的结果更不容易解释。
+
+\section{Applications, Revisited}
+
+\section{Issues And Controversies}
+
+\subsection{Why Test Sharp Hypotheses?}
+
+\subsection{Bayes Factors Versus Non-Bayesian Significance Testing}
+
+现在已经有很多文献讨论~Bayesian~和~non-Bayesian~检验之间的争论，
+下面我们简单介绍几点：
+\begin{enumerate}
+\item 期待~P~值和零假设正确的后验概率值相似是不合理的。
+一般的感觉是\BF比~P~值更保守。
+\item 频率学家的检验在大样本量时几乎系统地倾向于拒绝零假设，
+而\BF不会。
+\item \BF可以在不关心数据的非预定分析的情况下被应用
+（Bayes factors may be applied without concerns about unscheduled analysis of the data）。
+\item \BF可以容易地应用于非嵌套模型和嵌套模型。
+与之相比的是，non-Bayesian significance tests~应用于非嵌套模型就很困难。
+\item Non-Bayesian significance tests~被发展用来比较两个模型，但实际的数据分析中
+往往包括很多模型。
+\end{enumerate}
+
+\subsection{Bayes Factors Versus the AIC}
+
+Akaike (1973)~建议在一组候选模型中选择最小化
+\begin{equation}\label{equ:aic}
+\text{AIC} = -2(\text{log maximized likelihood}) + 2(\text{number of parameters})
+\end{equation}
+的模型作为最优模型。
+
+既然~AIC~只是从多个候选模型中选择某个“最好”的模型，它无法计入参数和模型的不确定性。
+Shibata (1976)~和~Katz (1981)~显示~AIC~倾向于过高估计需要的参数数量，
+也就是说~AIC~偏向于喜欢更复杂的模型。
+
+Schwarz criterion~显示具有最高后验概率的模型最小化
+\begin{equation}\label{equ:bic}
+\text{BIC} = -2(\text{log maximized likelihood}) + \log N \cdot (\text{number of parameters}) \mperiod
+\end{equation}
+比较\eqref{equ:aic}和\eqref{equ:bic}我们就可以发现，
+相对于~AIC~，BIC~偏向于喜欢更简单的模型。
+
+\section{Bibliographical Remarks And Additional Work}
+
+\section{Conclusion}
+
+使用\BF做模型检验时的三个主要问题：（1）\BF的计算；（2）模型的先验分布选取；
+（3）对感兴趣量做推断时，应计入模型的不确定性。
+\BF的主要限制是它们对模型假设和先验选择的敏感性。
+
+
+
+
+
+\bibliographystyle{abbrv}
+\bibliography{BayesFactors_reference}
+
+%\begin{thebibliography}{10}
+
+%\bibitem{Han} Jiawei Han and Micheline Kamber,
+%Data Mining (Concepts and Techniques), 2nd edition.
+%\textit{China Machine Press}, 2007.
+
+%\end{thebibliography}
+
+
+
+\end{CJK*}
+\end{document}

@@ -1,0 +1,190 @@
+
+%% 10¸ö´øÈ¦½Å×¢Í¼±ê
+\newcommand\chnnocirc[1]{%
+\ifcase#1 \or \ding{192}\or \ding{193}\or
+  \ding{194}\or \ding{195}\or \ding{196}\or \ding{197}%
+  \or \ding{198}\or \ding{199}\or \ding{200}\or \ding{201}\else *\fi\relax}
+\renewcommand{\thefootnote}{\footnotesize{\chnnocirc{\arabic{footnote}}}}
+
+%%%%%% Jinlong Wu's definitions %%%%%%%%%%%%
+% noun notation
+\def\NP{~Netflix Prize~}
+\def\PS{~Probe Set~}
+\def\PRMSE{~Probe RMSE~}
+\def\CF{~CF~}
+\def\Bin{\text{Bin}}
+\def\sign{\text{sign}}
+
+% font setting
+\newcommand{\denfont}[1]{\mathrm{#1}} % for notations of density functions
+\newcommand{\rvfont}[1]{\pmb{#1}} % for random variables
+\newcommand{\nounfont}[1]{\textsf{#1}} % font used for nouns
+\newcommand{\deffont}[1]{\textit{#1}} % font used for definitions
+\def\defeq{\equiv} % notation of definition
+
+% s means spaced
+
+\def\su{~$u$~} % Index
+\def\sv{~$v$~}
+\def\sm{~$m$~}
+\def\sn{~$n$~}
+\def\sU{~$U$~}
+\def\sM{~$M$~}
+\def\sK{~$K$~} % number of neighbors or factors
+\def\sk{~$k$~}
+\def\sS{~$S$~} % maximum rating value
+
+\def\cP{\mathcal{P}} % training Set
+\def\cPu{\mathcal{P}_u}
+\def\cPm{\mathcal{P}^m}
+\def\scP{~$\cP$~}
+\def\scPu{~$\cPu$~}
+\def\scPm{~$\cPm$~}
+\def\cS{\mathcal{S}} % maximum rating value
+\def\scS{~$\cS$~}
+\def\cR{\mathcal{R}} % probe set
+\def\scR{~$\cR$~}
+\def\cA{\mathcal{A}} % implicit set
+\def\cAu{\cA_u}
+\def\scA{~$\cA$~}
+\def\scAu{~$\cAu$~}
+\def\cN{\mathcal{N}} % neighborhood
+\def\cNmu{\mathcal{N}(m;u)} % neighborhood
+\def\scNmu{~$\cNmu$~}
+\def\cNmv{\mathcal{N}(m;v)}
+\def\cNum{\mathcal{N}(u;m)} % neighborhood
+\def\scNum{~$\cNum$~}
+\def\cF{\mathcal{F}} % free energy function
+\def\scF{~$\cF$~}
+
+\def\rum{r_{u,m}} % sup/sub-script, rating value
+\def\srum{~$\rum$~}
+\def\run{r_{u,n}}
+\def\rvm{r_{v,m}}
+\def\rvn{r_{v,n}}
+\def\prum{\hat{r}_{u,m}} % predictive rating value
+\def\eum{e_{u,m}}
+\def\sprum{~$\prum$~}
+\def\tum{t_{u,m}} % rating time
+\def\stum{~$\tum$~}
+\def\tun{t_{u,n}}
+\def\tvm{t_{v,m}}
+\def\fum{f_{u,m}} % rating frequency
+\def\sfum{~$\fum$~}
+\def\xum{x_{u,m}} % for global effects
+\def\sxum{~$\xum$~}
+\def\pxum{\hat{x}_{u,m}}
+\def\bum{b_{u,m}} % for baseline predictors
+\def\bun{b_{u,n}}
+\def\sbum{~$\bum$~}
+\def\sbun{~$\bun$~}
+
+\def\seta{~$\eta$~}
+\def\slambda{~$\lambda$~}
+\def\salpha{~$\alpha$~}
+\def\sgamma{~$\gamma$~}
+\def\sdelta{~$\delta$~}
+\def\stheta{~$\theta$~}
+\def\sbeta{~$\beta$~}
+\def\spsi{~$\psi$~}
+\def\smu{~$\mu$~}
+\def\sxi{~$\xi$~}
+
+% bold letters
+\def\Id{\mathbf{I}_d} % the identity matrix
+\def\bv1{\mathbf{1}}
+\def\bR{\mathbf{R}}
+\def\br{\mathbf{r}}
+\def\bC{\mathbf{C}} % center in FCM
+\def\bc{\mathbf{c}}
+\def\bZ{\mathbf{Z}} % probability in FCM
+\def\bz{\mathbf{z}}
+\def\bP{\mathbf{P}} % latent factors
+\def\bp{\mathbf{p}}
+\def\bQ{\mathbf{Q}}
+\def\bq{\mathbf{q}}
+\def\bW{\mathbf{W}}
+\def\bw{\mathbf{w}}
+\def\bA{\mathbf{A}} % for any matrix
+\def\bb{\mathbf{b}}
+\def\bd{\mathbf{d}}
+\def\bH{\mathbf{H}} % for hidden layer in RBM
+\def\bh{\mathbf{h}}
+\def\bD{\mathbf{D}}
+\def\bd{\mathbf{d}}
+\def\bX{\mathbf{X}} % for chapter integrated
+\def\bx{\mathbf{x}}
+\def\bY{\mathbf{Y}}
+\def\by{\mathbf{y}}
+
+% random variables
+\def\rvR{\rvfont{R}}
+\def\rvRum{\rvR_{u,m}}
+\def\rvZ{\rvfont{Z}}
+\def\rvP{\rvfont{P}}
+\def\rvQ{\rvfont{Q}}
+\def\rvH{\rvfont{H}} % for RBM
+
+% Chinese punctuation for math environment
+\def\mcomma{\text{\quad £¬}}
+\def\mshcomma{\text{\ £¬}}
+\def\mperiod{\text{\quad ¡£}}
+\def\mshperiod{\text{\ ¡£}}
+\def\msemi{\text{\quad £»}}
+\def\mshsemi{\text{\ £»}}
+
+
+%%%% Jinlong Wu's New Commands %%%%%
+
+\newcommand{\s}[1]{~$#1$~}
+\newcommand{\sle}[1]{~$#1$}
+\newcommand{\sr}[1]{$#1$~}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\def\d{\mathrm{d}}
+%\def\e{\mathrm{e}}
+%\def\dif{\mathrm{d}}
+%\def\fn{\mathrm{n}}
+%\def\fj{\mathrm{j}}
+%\def\fp{\mathrm{p}}
+%\def\fc{\mathcal{C}}
+%\def\fs{\mathcal{S}}
+%\def\re{\mathrm{Re}}
+%\def\im{\mathrm{Im}}
+%\def\cR{{\mathbb R}}
+%\def\cZ{{\mathbb Z}}
+%\def\disp{\displaystyle}
+%\def\fo{\mathcal{O}}
+
+%\newcommand{\me}{\mathrm{e}}
+%\newcommand{\mi}{\mathrm{i}}
+%\newcommand{\RR}{\mathbb{R}}
+%\newcommand{\LL}{\mathbb{L}}
+%\newcommand{\sss}{\mathbb{S}}
+%\newcommand{\HH}{\mathcal{H}}
+%\newcommand{\VV}{\mathcal{V}}
+%\newcommand{\trace}{\mathrm{Tr}}
+%\newcommand{\diag}{\mathrm{diag}}
+%\newcommand{\lag}{\mathcal{L}}
+%\newcommand{\nn}{\nonumber}
+
+\newcommand{\pp}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\ppp}[3]{\frac{\partial^2{#1}}{\partial{#2}\partial{#3}}}
+\newcommand{\pppp}[4]%
+  {\frac{\partial^3{#1}}{\partial{#2}\partial{#3}\partial{#4}}}
+\newcommand{\dd}[2]{\frac{\dif{#1}}{\dif{#2}}}
+\newcommand{\euci}[1]{\langle{#1}\rangle}
+\newcommand{\eucn}[1]{\left|{#1}\right|}
+\newcommand{\bra}[1]{\left|{#1}\right\rangle}
+\newcommand{\ket}[1]{\left\langle{#1}\right|}
+\newcommand{\ketbra}[2]{\left\langle{#1}|{#2}\right\rangle}
+\newcommand{\QMave}[1]{\left\langle{#1}\right\rangle}
+\renewcommand{\vec}[1]{\mbox{\boldmath$#1$}}
+
+
+%% Misc part.
+\renewcommand{\emph}[1]{{\heiti{#1}}}
+
+\newcommand{\ucite}[1]{\textsuperscript{\cite{#1}}}
