@@ -1,4 +1,7 @@
 # Year 2022
+* **《视觉-语言预训练（VLP）技术介绍》** 分享对应的 [PPT](2022/Intro-to-VLP.pdf)，分享 [视频](https://www.bilibili.com/video/BV1dr4y1E7ZR)
+    * 对当前的视觉-语言预训练（Vision-Language Pretraining, VLP) 技术做了概要介绍，也可以看成是对当前多模态学习（Multi-Modal Learning）技术的概要介绍。
+
 
 
 
