@@ -39,16 +39,27 @@
 * **[文本检测和识别——附CnStd与CnOcr工具介绍](https://www.bilibili.com/video/BV1uU4y1N7Ba)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1uU4y1N7Ba)](https://www.bilibili.com/video/BV1uU4y1N7Ba)
 
   * 分享对应的 [PPT](2021/cnstd-cnocr.pdf)；
-  * 介绍了文本检测和识别中的深度学习框架与代表性算法，之后介绍了**[CnSTD](https://github.com/breezedeus/cnstd)** 与 **[CnOCR](https://github.com/breezedeus/cnocr)** 两个python3工具包的使用。
+  * 介绍了文本检测和识别中的深度学习框架与代表性算法，之后介绍了 **[CnSTD](https://github.com/breezedeus/cnstd)** 与 **[CnOCR](https://github.com/breezedeus/cnocr)** 两个python3工具包的使用。
 
 * **[RS论文阅读：你真的读懂了Youtube DNN推荐论文吗？](https://www.bilibili.com/video/BV1BK4y1d7gD)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1BK4y1d7gD)](https://www.bilibili.com/video/BV1BK4y1d7gD)
 
   * 分享的 [文字版](https://zhuanlan.zhihu.com/p/372238343) ；
   * Youtube 在2016年发表的DNN推荐论文是最早把深度学习成功应用于推荐的代表性工作。很多博客都对这篇文章进行过翻译和解读，但你真的读懂了吗？本视频将带你温习这篇经典论文，并让你真的读懂它。
 
-* **[更好地理解图片：场景文字检测工具 cnstd - 知乎](https://zhuanlan.zhihu.com/p/145913973)**
+* **[线上测试 I：如何快速进行线上测试](https://www.bilibili.com/video/BV18b4y1972v)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV18b4y1972v)](https://www.bilibili.com/video/BV18b4y1972v) 
 
-* **[声纹分割聚类（Speaker Diarization） - 知乎](https://zhuanlan.zhihu.com/p/338656027)**
+  * 介绍了线上测试的两种方法：A/B 测试和 交错测试，适用于算法测试、产品增长测试等场景。
+
+* **[线上测试 II：效果评估——假设检验](https://www.bilibili.com/video/BV1LK4y1S7uR)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1LK4y1S7uR)](https://www.bilibili.com/video/BV1LK4y1S7uR)
+
+  * 介绍了客观评估线上实验效果的数学方法：**假设检验**。
+
+* **[声纹分割聚类（Speaker Diarization）](https://www.bilibili.com/video/BV1rp4y1q7HW)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1rp4y1q7HW)](https://www.bilibili.com/video/BV1rp4y1q7HW) 
+
+  * 分享的 [文字版](https://zhuanlan.zhihu.com/p/338656027) ；
+  * 介绍了声纹分割聚类的整体流程以及涉及的技术知识。
+
+* **[更好地理解图片：场景文字检测工具 cnstd - 知乎](https://zhuanlan.zhihu.com/p/145913973)**
 
 * **[2021年云栖大会见闻分享](https://www.bilibili.com/video/BV1bq4y1k7yr)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1bq4y1k7yr)](https://www.bilibili.com/video/BV1bq4y1k7yr)
 
@@ -70,6 +81,14 @@
   * 分享对应的 [PPT](2020/自监督学习-对比学习2-NLP.pdf)；
   * self-supervised & contrastive learning 第二弹：介绍NLP领域自监督学习和对比学习的最新工作（2020年）。 
   * self-supervised & contrastive learning 第一弹：[自监督学习&对比学习](https://www.bilibili.com/video/BV1v5411x7rD)  [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1v5411x7rD)](https://www.bilibili.com/video/BV1v5411x7rD)
+
+* **[最新语音识别技术简介（Introduction to ASR）](https://www.bilibili.com/video/BV1fZ4y1g7UP)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1fZ4y1g7UP)](https://www.bilibili.com/video/BV1fZ4y1g7UP) 
+  * 分享对应的 [PPT](2020/Intro-to-ASR.pdf)；
+  * 本次分享对最新的语音识别技术做了整体的介绍。
+* **[开放域聊天机器人技术介绍](https://www.bilibili.com/video/BV1e5411Y7ci)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1e5411Y7ci)](https://www.bilibili.com/video/BV1e5411Y7ci) 
+  * 分享对应的 [PPT](2020/open-domain-chatbot.pdf)；
+  * 分享的 [文字版](https://zhuanlan.zhihu.com/p/150608851) ；
+  * 主要介绍 Google Meena 和 Facebook Blender 这两个工作，它们分别发表于今年1月和4月（他们远程办公的效率看来很高）。这两篇论文在模型方面都没有什么创新，但融合了很多有意思的技术，这些模型之外的技术值得做对话的同学了解一下。现在大概是聊天机器人的 GPT-1 时代，谁会开启聊天机器人的 BERT 时代呢？
 
 
 
