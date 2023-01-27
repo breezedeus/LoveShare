@@ -16,10 +16,10 @@
 ### 开源工具的使用介绍
 
 * **[Pix2Text: 替代 Mathpix 的免费 Python 开源工具](https://www.bilibili.com/video/BV12e4y1871U)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV12e4y1871U)](https://www.bilibili.com/video/BV12e4y1871U)
-  * **[Pix2Text (P2T)](https://github.com/breezedeus/pix2text)** ，目标是 **Mathpix** 的Python开源替代品，现在可以识别截图中的数学公式并转换为Latex表示，也可以识别图片中的中英文文字。
+  * **[Pix2Text (P2T)](https://github.com/breezedeus/pix2text)** ，目标是 **Mathpix** 的Python开源替代品，现在可以识别截图中的数学公式并转换为Latex表示，也可以识别图片中的中英文文字；
   * 知乎文章（文字版）：[Pix2Text: 替代 Mathpix 的免费 Python 开源工具](https://zhuanlan.zhihu.com/p/566498651)
   * 在线Demo： https://huggingface.co/spaces/breezedeus/pix2text 
-  * Gitee: https://gitee.com/breezedeus/pix2text 。
+  * **Gitee** Fork: https://gitee.com/breezedeus/pix2text 。
 
 * **[更更好用的开源Python OCR工具包——CnOCR V2.2 - 知乎](https://zhuanlan.zhihu.com/p/546441117)**
 * **[利用CnOCR实现自动对截屏图片OCR - 知乎](https://zhuanlan.zhihu.com/p/554108141)**
@@ -29,7 +29,7 @@
   * 相关资源：[文本检测和识别——附CnStd与CnOcr工具介绍](https://www.bilibili.com/video/BV1uU4y1N7Ba) [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1uU4y1N7Ba)](https://www.bilibili.com/video/BV1uU4y1N7Ba)
 
 * **[antiOCR 使用介绍](https://www.bilibili.com/video/BV1q8411G7HE)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1q8411G7HE)](https://www.bilibili.com/video/BV1q8411G7HE)
-  * **[antiOCR](https://github.com/breezedeus/antiOCR)** 把指定文本转换成机器无法识别但人可读的文字图片，即拒绝图片内容被OCR。常见的使用场景是图片验证码。antiOCR 是Python工具包，安装即可使用，或者直接使用作者提供的在线Demo生成图片。
+  * **[antiOCR](https://github.com/breezedeus/antiOCR)** 把指定文本转换成机器无法识别但人可读的文字图片，即拒绝图片内容被OCR。常见的使用场景是图片验证码。antiOCR 是Python工具包，安装即可使用，或者直接使用作者提供的在线Demo生成图片；
   * 在线Demo：https://huggingface.co/spaces/breezedeus/antiOCR 。
 
 
@@ -48,7 +48,7 @@
 
 * **[线上测试 I：如何快速进行线上测试](https://www.bilibili.com/video/BV18b4y1972v)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV18b4y1972v)](https://www.bilibili.com/video/BV18b4y1972v) 
 
-  * 介绍了线上测试的两种方法：A/B 测试和 交错测试，适用于算法测试、产品增长测试等场景。
+  * 介绍了线上测试的两种方法：**A/B测试 **和 **交错测试**，适用于算法测试、产品增长测试等场景。
 
 * **[线上测试 II：效果评估——假设检验](https://www.bilibili.com/video/BV1LK4y1S7uR)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1LK4y1S7uR)](https://www.bilibili.com/video/BV1LK4y1S7uR)
 
@@ -89,6 +89,7 @@
   * 分享对应的 [PPT](2020/open-domain-chatbot.pdf)；
   * 分享的 [文字版](https://zhuanlan.zhihu.com/p/150608851) ；
   * 主要介绍 Google Meena 和 Facebook Blender 这两个工作，它们分别发表于今年1月和4月（他们远程办公的效率看来很高）。这两篇论文在模型方面都没有什么创新，但融合了很多有意思的技术，这些模型之外的技术值得做对话的同学了解一下。现在大概是聊天机器人的 GPT-1 时代，谁会开启聊天机器人的 BERT 时代呢？
+* **[微软小冰对话机器人架构 - 知乎](https://zhuanlan.zhihu.com/p/57532328)**
 
 
 
