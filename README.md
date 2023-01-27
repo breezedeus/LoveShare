@@ -18,10 +18,11 @@
 * **[Pix2Text: 替代 Mathpix 的免费 Python 开源工具](https://www.bilibili.com/video/BV12e4y1871U)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV12e4y1871U)](https://www.bilibili.com/video/BV12e4y1871U)
   * **[Pix2Text (P2T)](https://github.com/breezedeus/pix2text)** ，目标是 **Mathpix** 的Python开源替代品，现在可以识别截图中的数学公式并转换为Latex表示，也可以识别图片中的中英文文字；
   * 知乎文章（文字版）：[Pix2Text: 替代 Mathpix 的免费 Python 开源工具](https://zhuanlan.zhihu.com/p/566498651)
-  * 在线Demo： https://huggingface.co/spaces/breezedeus/pix2text 
+  * 在线Demo： https://huggingface.co/spaces/breezedeus/pix2text ；
   * **Gitee** Fork: https://gitee.com/breezedeus/pix2text 。
 
 * **[更更好用的开源Python OCR工具包——CnOCR V2.2 - 知乎](https://zhuanlan.zhihu.com/p/546441117)**
+  * 在线Demo： https://huggingface.co/spaces/breezedeus/cnocr 。
 * **[利用CnOCR实现自动对截屏图片OCR - 知乎](https://zhuanlan.zhihu.com/p/554108141)**
 * **[如何安装CnOCR，以及免安装直接使用CnOCR](https://www.bilibili.com/video/BV1NY4y1T7jG)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1NY4y1T7jG)](https://www.bilibili.com/video/BV1NY4y1T7jG)
   * 分享对应的 [PPT](2022/CnOCR-Installation-FAQ.pdf)；
@@ -48,7 +49,7 @@
 
 * **[线上测试 I：如何快速进行线上测试](https://www.bilibili.com/video/BV18b4y1972v)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV18b4y1972v)](https://www.bilibili.com/video/BV18b4y1972v) 
 
-  * 介绍了线上测试的两种方法：**A/B测试 **和 **交错测试**，适用于算法测试、产品增长测试等场景。
+  * 介绍了线上测试的两种方法：**A/B测试** 和 **交错测试**，适用于算法测试、产品增长测试等场景。
 
 * **[线上测试 II：效果评估——假设检验](https://www.bilibili.com/video/BV1LK4y1S7uR)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1LK4y1S7uR)](https://www.bilibili.com/video/BV1LK4y1S7uR)
 
