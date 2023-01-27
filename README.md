@@ -10,8 +10,8 @@
 ## 开源工具的使用介绍
 
 * **[如何安装CnOCR，以及免安装直接使用CnOCR](https://www.bilibili.com/video/BV1NY4y1T7jG)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1NY4y1T7jG)](https://www.bilibili.com/video/BV1NY4y1T7jG)
-  * 分享对应的 [PPT](CnOCR-Installation-FAQ.pdf)；
-  * 介绍了**[CnOCR](https://github.com/breezedeus/cnocr)** 安装和使用过程中大家遇到的一些问题。能不能不安装试用CnOCR效果？没问题，本视频中提供了**4种免安装**使用的方法。
+  * 分享对应的 [PPT](2022/CnOCR-Installation-FAQ.pdf)；
+  * 介绍了 **[CnOCR](https://github.com/breezedeus/cnocr)** 安装和使用过程中大家遇到的一些问题。能不能不安装试用CnOCR效果？没问题，本视频中提供了**4种免安装**使用的方法。
 
 
 
