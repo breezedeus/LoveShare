@@ -1,18 +1,31 @@
 # Year 2022
 
 * **[视觉-语言预训练（VLP）技术介绍](https://www.bilibili.com/video/BV1dr4y1E7ZR)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1dr4y1E7ZR)](https://www.bilibili.com/video/BV1dr4y1E7ZR)
-    
     * 分享对应的 [PPT](2022/Intro-to-VLP.pdf)；
-    
+
     * 对当前的视觉-语言预训练（Vision-Language Pretraining, VLP) 技术做了概要介绍，也可以看成是对当前多模态学习（Multi-Modal Learning）技术的概要介绍。
-    
+
+* **[信息抽取统一框架介绍和实例—— UIE (Universal Information Extraction)](https://www.bilibili.com/video/BV1LW4y1U7ch)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1LW4y1U7ch)](https://www.bilibili.com/video/BV1LW4y1U7ch)
+    * 分享对应的 [PPT](2022/UIE_Universal_Information_Extraction.pdf)；
+    * 介绍了百度 ACL 2022 的论文《Unified Structure Generation for Universal Information Extraction》，并基于百度开源的代码跑了训练示例。
 
 
-## 开源工具的使用介绍
+
+
+### 开源工具的使用介绍
+
+* **[Pix2Text: 替代 Mathpix 的免费 Python 开源工具](https://www.bilibili.com/video/BV12e4y1871U)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV12e4y1871U)](https://www.bilibili.com/video/BV12e4y1871U)
+  * **[Pix2Text (P2T)](https://github.com/breezedeus/pix2text)** ，目标是 **Mathpix** 的Python开源替代品，现在可以识别截图中的数学公式并转换为Latex表示，也可以识别图片中的中英文文字。
+  * 在线Demo： https://huggingface.co/spaces/breezedeus/pix2text 。
+  * Gitee: https://gitee.com/breezedeus/pix2text 。
 
 * **[如何安装CnOCR，以及免安装直接使用CnOCR](https://www.bilibili.com/video/BV1NY4y1T7jG)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1NY4y1T7jG)](https://www.bilibili.com/video/BV1NY4y1T7jG)
   * 分享对应的 [PPT](2022/CnOCR-Installation-FAQ.pdf)；
   * 介绍了 **[CnOCR](https://github.com/breezedeus/cnocr)** 安装和使用过程中大家遇到的一些问题。能不能不安装试用CnOCR效果？没问题，本视频中提供了**4种免安装**使用的方法。
+
+* **[antiOCR 使用介绍](https://www.bilibili.com/video/BV1q8411G7HE)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1q8411G7HE)](https://www.bilibili.com/video/BV1q8411G7HE)
+  * **[antiOCR](https://github.com/breezedeus/antiOCR)** 把指定文本转换成机器无法识别但人可读的文字图片，即拒绝图片内容被OCR。常见的使用场景是图片验证码。antiOCR 是Python工具包，安装即可使用，或者直接使用作者提供的在线Demo生成图片。
+  * 在线Demo：https://huggingface.co/spaces/breezedeus/antiOCR 。
 
 
 
