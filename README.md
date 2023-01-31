@@ -37,6 +37,11 @@
 
 # Year 2021
 
+* **[Tricks for Sparse & Dense Retrieval Models](https://www.bilibili.com/video/BV13y4y1R71Q)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV13y4y1R71Q)](https://www.bilibili.com/video/BV13y4y1R71Q)
+
+  * 分享对应的 [PPT](2021/sparse-dense-retrieval.pdf)；
+  * 介绍了 **Sparse Retrieval (SR)** 和  **Dense Retrieval (DR)** 中的几大类改进方法。 *虽然是 2021年底的分享，不过到 2023年才发布出来，拖延症😅。*
+
 * **[文本检测和识别——附CnStd与CnOcr工具介绍](https://www.bilibili.com/video/BV1uU4y1N7Ba)** [![bilibili](https://img.shields.io/badge/dynamic/json?label=views&style=social&logo=bilibili&query=data.stat.view&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Fweb-interface%2Fview%3Fbvid%3DBV1uU4y1N7Ba)](https://www.bilibili.com/video/BV1uU4y1N7Ba)
 
   * 分享对应的 [PPT](2021/cnstd-cnocr.pdf)；
